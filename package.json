@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "next": "16.4.0",
+    "next-swagger-doc": "^0.5.0",
     "pg": "^8.23.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "reflect-metadata": "^0.2.2",
+    "swagger-ui-react": "^5.33.1",
     "typeorm": "^1.1.1"
   },
   "devDependencies": {
@@ -21,6 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/swagger-ui-react": "^5.18.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "tailwindcss": "^4",
