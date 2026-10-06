@@ -13,6 +13,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || 'tickethold',
   password: process.env.DB_PASSWORD || 'password',
   database: process.env.DB_NAME || 'tickethold',
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   synchronize: true, // For development only!
   logging: false,
   entities: [Event, Tier, Hold, Order, WebhookEvent],
