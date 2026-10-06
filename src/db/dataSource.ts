@@ -25,11 +25,11 @@ let isInitialized = false;
 
 export const initializeDB = async () => {
   if (isInitialized) return AppDataSource;
-  
+
   if (!AppDataSource.isInitialized) {
     await AppDataSource.initialize();
   }
-  
+
   isInitialized = true;
   return AppDataSource;
 };
