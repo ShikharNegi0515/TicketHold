@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
-import { Tier } from './Tier';
+import type { Tier } from './Tier';
 
 @Entity('events')
 export class Event {
@@ -12,9 +12,9 @@ export class Event {
   @Column({ type: 'varchar' })
   venue!: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp with time zone' })
   starts_at!: Date;
 
-  @OneToMany(() => Tier, tier => tier.event)
+  @OneToMany('Tier', 'event')
   tiers!: Tier[];
 }

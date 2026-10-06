@@ -1,7 +1,6 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Event } from './Event';
-import { Hold } from './Hold';
-import { Order } from './Order';
+import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import type { Hold } from './Hold';
+import type { Order } from './Order';
 
 @Entity('tiers')
 export class Tier {
@@ -14,22 +13,22 @@ export class Tier {
   @Column({ type: 'varchar' })
   name!: string;
 
-  @Column('int')
-  price!: number; // minor units
+  @Column({ type: 'int' })
+  price!: number; // minor units (cents)
 
   @Column({ type: 'varchar' })
   currency!: string;
 
-  @Column('int')
+  @Column({ type: 'int' })
   total_inventory!: number;
 
-  @ManyToOne(() => Event, event => event.tiers)
+  @ManyToOne('Event', 'tiers')
   @JoinColumn({ name: 'event_id' })
-  event!: Event;
+  event!: unknown;
 
-  @OneToMany(() => Hold, hold => hold.tier)
+  @OneToMany('Hold', 'tier')
   holds!: Hold[];
 
-  @OneToMany(() => Order, order => order.tier)
+  @OneToMany('Order', 'tier')
   orders!: Order[];
 }

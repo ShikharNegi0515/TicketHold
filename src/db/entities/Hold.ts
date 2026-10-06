@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Tier } from './Tier';
 
 @Entity('holds')
 export class Hold {
@@ -9,16 +8,20 @@ export class Hold {
   @Column({ type: 'varchar' })
   tier_id!: string;
 
-  @Column('int')
+  @Column({ type: 'int' })
   quantity!: number;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp with time zone' })
   expires_at!: Date;
 
-  @Column({ type: 'enum', enum: ['active', 'expired', 'converted'], default: 'active' })
+  @Column({
+    type: 'enum',
+    enum: ['active', 'expired', 'converted'],
+    default: 'active',
+  })
   status!: 'active' | 'expired' | 'converted';
 
-  @ManyToOne(() => Tier, tier => tier.holds)
+  @ManyToOne('Tier', 'holds')
   @JoinColumn({ name: 'tier_id' })
-  tier!: Tier;
+  tier!: unknown;
 }
