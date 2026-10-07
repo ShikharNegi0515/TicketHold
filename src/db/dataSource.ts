@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'pg'; // Force Vercel bundler to include pg (TypeORM loads it dynamically)
 import { DataSource } from 'typeorm';
 import { Event } from './entities/Event';
 import { Tier } from './entities/Tier';
