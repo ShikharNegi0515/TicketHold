@@ -4,9 +4,11 @@ This is the backend API for Encore Tickets real-time ticket inventory system. It
 
 ## Tech Stack
 - **Framework**: Next.js Route Handlers (App Router)
-- **Database**: PostgreSQL (Dockerized locally)
+- **Database**: PostgreSQL — Docker locally, [Neon](https://neon.tech) in production
 - **ORM**: TypeORM
 - **Language**: TypeScript (Strict)
+- **Deployment**: Vercel
+- **Docs**: OpenAPI 3.0 / Swagger UI at `/docs`
 
 ## Schema Diagram
 
