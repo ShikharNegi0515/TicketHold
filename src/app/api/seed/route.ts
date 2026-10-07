@@ -61,6 +61,7 @@ export async function GET() {
     return NextResponse.json({ success: true, message: 'Seeded successfully' });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Failed to seed' }, { status: 500 });
+    const message = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: 'Failed to seed', detail: message }, { status: 500 });
   }
 }
