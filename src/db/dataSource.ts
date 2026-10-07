@@ -7,20 +7,33 @@ import { Hold } from './entities/Hold';
 import { Order } from './entities/Order';
 import { WebhookEvent } from './entities/WebhookEvent';
 
-export const AppDataSource = new DataSource({
-  type: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  username: process.env.DB_USERNAME || 'tickethold',
-  password: process.env.DB_PASSWORD || 'password',
-  database: process.env.DB_NAME || 'tickethold',
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-  synchronize: true, // For development only!
-  logging: false,
-  entities: [Event, Tier, Hold, Order, WebhookEvent],
-  subscribers: [],
-  migrations: [],
-});
+export const AppDataSource = new DataSource(
+  process.env.DATABASE_URL
+    ? {
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+        synchronize: true,
+        logging: false,
+        entities: [Event, Tier, Hold, Order, WebhookEvent],
+        subscribers: [],
+        migrations: [],
+      }
+    : {
+        type: 'postgres',
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT || '5432'),
+        username: process.env.DB_USERNAME || 'tickethold',
+        password: process.env.DB_PASSWORD || 'password',
+        database: process.env.DB_NAME || 'tickethold',
+        ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+        synchronize: true,
+        logging: false,
+        entities: [Event, Tier, Hold, Order, WebhookEvent],
+        subscribers: [],
+        migrations: [],
+      }
+);
 
 let isInitialized = false;
 
