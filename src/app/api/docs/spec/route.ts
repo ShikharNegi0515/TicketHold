@@ -23,7 +23,7 @@ idempotent webhook processing, and automatic hold expiry.
     },
   },
   servers: [
-    { url: 'http://localhost:3000', description: 'Local Development' },
+    { url: '/', description: 'Current Environment' },
   ],
   tags: [
     { name: 'Events', description: 'Query events and their available inventory' },
